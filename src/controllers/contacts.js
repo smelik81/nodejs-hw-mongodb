@@ -37,12 +37,33 @@ export const getContactByIdController = async (req, res) => {
 };
 
 export const addContactController = async (req, res) => {
-  const data = await contactServices.createContact(req.body);
+  const {
+    name,
+    phoneNumber,
+    email = null,
+    isFavourite = false,
+    contactType,
+  } = req.body;
+
+  if (!name || !phoneNumber || !contactType) {
+    throw createHttpError(
+      400,
+      'name, phoneNumber and contactType are required!!!',
+    );
+  }
+
+  const newContact = await contactServices.createContact({
+    name,
+    phoneNumber,
+    email,
+    isFavourite,
+    contactType,
+  });
 
   res.status(201).json({
     status: 201,
     message: 'Contact add successfully',
-    data,
+    data: newContact,
   });
 };
 
