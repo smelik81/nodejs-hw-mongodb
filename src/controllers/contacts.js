@@ -1,4 +1,3 @@
-import { isValidObjectId } from 'mongoose';
 import * as contactServices from '../services/contacts.js';
 import createHttpError from 'http-errors';
 
@@ -69,11 +68,6 @@ export const addContactController = async (req, res) => {
 
 export const upsertContactController = async (req, res) => {
   const { contactId } = req.params;
-
-  if (!isValidObjectId(contactId)) {
-    throw createHttpError(400, `Invalid ${contactId} format`);
-  }
-
   const { isNew, data } = await contactServices.updateContact(
     { _id: contactId },
     req.body,

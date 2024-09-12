@@ -9,12 +9,9 @@ export const createContact = (payload) => ContactCollection.create(payload);
 
 export const updateContact = async (filter, payload, options = {}) => {
   const rawResult = await ContactCollection.findOneAndUpdate(filter, payload, {
-    new: true,
     includeResultMetadata: true,
     ...options,
   });
-
-  console.log(rawResult.lastErrorObject);
 
   if (!rawResult || !rawResult.value) return null;
 
