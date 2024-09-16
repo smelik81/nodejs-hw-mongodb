@@ -1,10 +1,24 @@
 import * as contactServices from '../services/contacts.js';
 import createHttpError from 'http-errors';
 import parsePaginationContact from '../utils/parsePaginationContact.js';
+import parseSortContact from '../utils/parseSortContact.js';
+import { parseContactFilterParams } from '../utils/filter/parseContactFilterParams.js';
+/* import { sortField } from '../db/models/Contact.js'; */
 
 export const getAllContactsController = async (req, res) => {
   const { page, perPage } = parsePaginationContact(req.query);
-  const data = await contactServices.getAllContacts({ page, perPage });
+  const { sortBy, sortOrder } = parseSortContact(req.query);
+  // не зрозуміла різниця між двома підходами тому що працюють обидва
+  /* const { sortBy, sortOrder } = parseSortContact(...req.query, sortField); */
+  const filter = parseContactFilterParams(req.query);
+
+  const data = await contactServices.getAllContacts({
+    page,
+    perPage,
+    sortBy,
+    sortOrder,
+    filter,
+  });
 
   res.json({
     status: 200,
