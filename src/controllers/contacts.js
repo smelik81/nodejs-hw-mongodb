@@ -7,6 +7,7 @@ import { parseContactFilterParams } from '../utils/filter/parseContactFilterPara
 
 export const getAllContactsController = async (req, res) => {
   const { page, perPage } = parsePaginationContact(req.query);
+
   const { sortBy, sortOrder } = parseSortContact(req.query);
   // не зрозуміла різниця між двома підходами тому що працюють обидва
   /* const { sortBy, sortOrder } = parseSortContact(...req.query, sortField); */
