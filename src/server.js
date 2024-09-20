@@ -4,6 +4,7 @@ import { env } from './utils/env.js';
 import contactRouter from './routers/contacts.js';
 import notFoundHandler from './middlewares/notFoundHandler.js';
 import errorHandler from './middlewares/errorHandler.js';
+import authRouter from './routers/auth.js';
 /* import logger from './middlewares/logger.js'; */
 
 const setupServer = () => {
@@ -13,6 +14,8 @@ const setupServer = () => {
   app.use(cors());
   /* app.use(logger); */
   app.use('/contacts', contactRouter);
+  app.use('/auth', authRouter);
+
   app.use('*', notFoundHandler);
   app.use(errorHandler);
 
