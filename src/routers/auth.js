@@ -3,20 +3,30 @@ import { Router } from 'express';
 import controllerWrapper from '../utils/controllerWraper.js';
 import validateBody from '../utils/validateBody.js';
 import { userSigninSchema, userSignupSchema } from '../validation/users.js';
-import { signinController, signupController } from '../controllers/auth.js';
+import * as authControllers from '../controllers/auth.js';
 
 const authRouter = Router();
 
 authRouter.post(
   '/signup',
   validateBody(userSignupSchema),
-  controllerWrapper(signupController),
+  controllerWrapper(authControllers.signupController),
 );
 
 authRouter.post(
   '/signin',
   validateBody(userSigninSchema),
-  controllerWrapper(signinController),
+  controllerWrapper(authControllers.signinController),
+);
+
+authRouter.post(
+  '/refresh',
+  controllerWrapper(authControllers.refreshController),
+);
+
+authRouter.post(
+  '/signout',
+  controllerWrapper(authControllers.signoutController),
 );
 
 export default authRouter;
