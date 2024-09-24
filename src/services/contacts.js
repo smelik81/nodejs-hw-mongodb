@@ -8,10 +8,9 @@ export const getAllContacts = async ({
   sortBy = '_id',
   sortOrder = SORT_ORDER[0],
   filter = {},
-  userId,
 }) => {
   const skip = (page - 1) * perPage;
-  const contactsQuery = ContactCollection.find({ userId });
+  const contactsQuery = ContactCollection.find();
 
   if (filter.name) {
     contactsQuery.where('name').regex(new RegExp(filter.name, 'i'));
