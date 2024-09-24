@@ -11,7 +11,7 @@ export const getAllContactsController = async (req, res) => {
   const { sortBy, sortOrder } = parseSortContact(req.query);
   /* const { sortBy, sortOrder } = parseSortContact(...req.query, sortField); */
   const filter = parseContactFilterParams(req.query);
-  const { id: userId } = req.user;
+  const { _id: userId } = req.user;
 
   const data = await contactServices.getAllContacts({
     page,
@@ -30,8 +30,8 @@ export const getAllContactsController = async (req, res) => {
 
 export const getContactByIdController = async (req, res) => {
   const { contactId } = req.params;
-  const { id: userId } = req.user;
-  const contact = await contactServices.getContact({ id: contactId, userId });
+  const { _id: userId } = req.user;
+  const contact = await contactServices.getContact({ _id: contactId, userId });
 
   if (!contact) {
     throw createHttpError(404, `Contact with contactId-${contactId} not found`);
@@ -45,6 +45,8 @@ export const getContactByIdController = async (req, res) => {
 };
 
 export const addContactController = async (req, res) => {
+  console.log(req.user._id);
+
   const {
     name,
     phoneNumber,
@@ -52,7 +54,7 @@ export const addContactController = async (req, res) => {
     isFavourite = req.body.isFavourite || false,
     contactType,
   } = req.body;
-  const { id: userId } = req.user;
+  const { _id: userId } = req.user;
 
   if (!name || !phoneNumber || !contactType) {
     throw createHttpError(
@@ -77,7 +79,7 @@ export const addContactController = async (req, res) => {
 
 export const upsertContactController = async (req, res) => {
   const { contactId } = req.params;
-  const { id: userId } = req.user;
+  const { _id: userId } = req.user;
   const { isNew, data } = await contactServices.updateContact(
     { _id: contactId, userId },
     req.body,
@@ -95,7 +97,7 @@ export const upsertContactController = async (req, res) => {
 
 export const patchContactController = async (req, res) => {
   const { contactId } = req.params;
-  const { id: userId } = req.user;
+  const { _id: userId } = req.user;
 
   const result = await contactServices.updateContact(
     { _id: contactId, userId },
@@ -114,7 +116,7 @@ export const patchContactController = async (req, res) => {
 
 export const deleteContactController = async (req, res) => {
   const { contactId } = req.params;
-  const { id: userId } = req.user;
+  const { _id: userId } = req.user;
   const contact = await contactServices.deleteContact({
     _id: contactId,
     userId,
