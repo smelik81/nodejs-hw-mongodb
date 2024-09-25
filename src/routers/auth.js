@@ -8,13 +8,13 @@ import * as authControllers from '../controllers/auth.js';
 const authRouter = Router();
 
 authRouter.post(
-  '/signup',
+  '/register',
   validateBody(userSignupSchema),
   controllerWrapper(authControllers.signupController),
 );
 
 authRouter.post(
-  '/signin',
+  '/login',
   validateBody(userSigninSchema),
   controllerWrapper(authControllers.signinController),
 );
@@ -25,7 +25,7 @@ authRouter.post(
 );
 
 authRouter.post(
-  '/signout',
+  '/logout',
   controllerWrapper(authControllers.signoutController),
 );
 
