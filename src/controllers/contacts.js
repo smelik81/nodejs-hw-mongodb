@@ -45,9 +45,10 @@ export const getContactByIdController = async (req, res) => {
 };
 
 export const addContactController = async (req, res) => {
-  console.log(req.user._id);
+  console.log(req.body);
+  console.log(req.file);
 
-  const {
+  /*  const {
     name,
     phoneNumber,
     email = req.body.email || null,
@@ -74,7 +75,7 @@ export const addContactController = async (req, res) => {
     status: 201,
     message: 'Contact create successfully!!!',
     data: newContact,
-  });
+  }); */
 };
 
 export const upsertContactController = async (req, res) => {
