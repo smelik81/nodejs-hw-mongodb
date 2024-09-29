@@ -24,7 +24,6 @@ export const signupController = async (req, res) => {
 
 export const signinController = async (req, res) => {
   const session = await authServices.signin(req.body);
-
   setupSession(res, session);
 
   res.json({
@@ -62,6 +61,27 @@ export const signoutController = async (req, res) => {
 
   res.clearCookie('sessionId');
   res.clearCookie('refreshToken');
-
   res.status(204).send();
+};
+
+export const requestSendEmailController = async (req, res) => {
+  const { email } = req.body;
+  await authServices.requestResetToken(email);
+
+  res.send({
+    status: 200,
+    message: 'Reset password email has been successfully sent.',
+    data: {},
+  });
+};
+
+export const resetPasswordController = async (req, res) => {
+  const { password, token } = req.body;
+  await authServices.resetPassword(password, token);
+
+  res.json({
+    message: 'Password was successfully reset!',
+    status: 200,
+    data: {},
+  });
 };
