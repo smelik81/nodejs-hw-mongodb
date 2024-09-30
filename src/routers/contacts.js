@@ -32,12 +32,14 @@ contactRouter.post(
 contactRouter.put(
   '/:contactId',
   isValidId,
+  upload.single('photo'),
   validateBody(createContactSchema),
   controllerWrapper(contactsController.upsertContactController),
 );
 contactRouter.patch(
   '/:contactId',
   isValidId,
+  upload.single('photo'),
   validateBody(updateContactSchema),
   controllerWrapper(contactsController.patchContactController),
 );
