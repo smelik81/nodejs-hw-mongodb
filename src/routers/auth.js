@@ -9,6 +9,7 @@ import {
   userSignupSchema,
 } from '../validation/users.js';
 import * as authControllers from '../controllers/auth.js';
+import { loginWithGoogleOAuthSchema } from '../validation/contacts.js';
 
 const authRouter = Router();
 
@@ -16,6 +17,17 @@ authRouter.post(
   '/register',
   validateBody(userSignupSchema),
   controllerWrapper(authControllers.signupController),
+);
+
+authRouter.get(
+  '/google-auth-url',
+  controllerWrapper(authControllers.getGenerateGoogleOAuthUrlController),
+);
+
+authRouter.post(
+  '/confirm-google',
+  validateBody(loginWithGoogleOAuthSchema),
+  controllerWrapper(authControllers.loginWithGoogleOAuthController),
 );
 
 authRouter.post(

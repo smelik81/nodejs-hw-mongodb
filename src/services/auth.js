@@ -14,6 +14,7 @@ import { sendEmail } from '../utils/sendEmail.js';
 import { createJwtToken } from '../utils/jwt.js';
 import { env } from '../utils/env.js';
 import { TEMPLATES_DIR } from '../constans/index.js';
+import { validateCode } from '../utils/googleOAuth.js';
 /* import { SMTP } from '../constans/index.js'; */
 
 const createSession = () => {
@@ -48,7 +49,6 @@ export const signup = async (payload) => {
     ...payload,
     password: hashUserPassword,
   });
-  console.log(user);
 
   return user;
 };
@@ -67,6 +67,34 @@ export const signin = async (payload) => {
   }
 
   await SessionCollection.deleteOne({ userId: user._id });
+
+  const sessionData = createSession();
+
+  const userSession = await SessionCollection.create({
+    userId: user._id,
+    ...sessionData,
+  });
+
+  return userSession;
+};
+
+export const signinOrSignupWithGogle = async (code) => {
+  const loginTicket = await validateCode(code);
+  const payload = loginTicket.getPayload();
+
+  let user = await UserCollection.findOne({ email: payload.email });
+  console.log(user);
+
+  if (!user) {
+    const hashPassword = await bcrypt.hash(randomBytes(10), 10);
+    user = await UserCollection.create({
+      email: payload.email,
+      username: payload.name,
+      password: hashPassword,
+      verify: true,
+    });
+    delete user._doc.password;
+  }
 
   const sessionData = createSession();
 

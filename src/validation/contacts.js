@@ -27,3 +27,7 @@ export const updateContactSchema = Joi.object({
     .min(3)
     .max(20),
 });
+
+export const loginWithGoogleOAuthSchema = Joi.object({
+  code: Joi.string().required(),
+});
