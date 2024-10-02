@@ -100,7 +100,7 @@ export const getGenerateGoogleOAuthUrlController = async (req, res) => {
 };
 
 export const loginWithGoogleOAuthController = async (req, res) => {
-  const session = await authServices.signinOrSignupWithGogle(req.body.code);
+  //const session = await authServices.signinOrSignupWithGogle(req.body.code);
 
   res.send('Success');
   //setupSession(res, session);
