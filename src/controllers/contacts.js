@@ -91,6 +91,7 @@ export const addContactController = async (req, res) => {
 export const upsertContactController = async (req, res) => {
   const { contactId } = req.params;
   const { _id: userId } = req.user;
+  console.log(userId);
 
   let photo;
   if (req.file) {
