@@ -151,9 +151,10 @@ export const requestResetToken = async (email) => {
     TEMPLATES_DIR,
     'reset-password-email.html',
   );
-  const resetPasswordTemplatesSource = await fs
-    .readFile(resetPasswordTemplatesPath, 'utf-8')
-    .toString();
+  const resetPasswordTemplatesSource = await fs.readFile(
+    resetPasswordTemplatesPath,
+    'utf-8',
+  );
 
   const resetToken = createJwtToken({ sub: user._id, email: user.email });
 
