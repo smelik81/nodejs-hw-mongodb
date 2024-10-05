@@ -1,0 +1,48 @@
+tags:
+  - Auth
+summary: Get Google OAuth URL
+operationId: getOAuthUrl
+description: Generates URL for Google OAuth authentication.
+security:
+  - bearerAuth: []
+responses:
+  '200':
+    description: Successfully generated Google OAuth URL
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: googleOAuth url generate succesfully
+            data:
+              type: object
+              properties:
+                url:
+                  type: string
+                  description: The generated Google OAuth URL.
+                  example: 'https://accounts.google.com/o/oauth2/auth?...'
+  '401':
+    description: Unauthorized error - Missing or invalid credentials
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+          properties:
+            status:
+              type: integer
+              example: 401
+              description: HTTP status code indicating unauthorized access.
+            message:
+              type: string
+              example: 'Invalid or missing token'
+              description: Error message indicating the client did not provide valid credentials.
+  '500':
+    $ref: '../../components/responses/500.yaml'

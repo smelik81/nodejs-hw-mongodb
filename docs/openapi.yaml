@@ -18,6 +18,41 @@ paths:
   /contacts:
     get:
       $ref: '../swagger/paths/contacts/get.yaml'
+    post:
+      $ref: '../swagger/paths/contacts/post.yaml'
+  /contacts/{contactId}:
+    get:
+      $ref: '../swagger/paths/contacts/{id}/get.yaml'
+    put:
+      $ref: '../swagger/paths/contacts/{id}/put.yaml'
+    patch:
+      $ref: '../swagger/paths/contacts/{id}/patch.yaml'
+    delete:
+      $ref: '../swagger/paths/contacts/{id}/delete.yaml'
+  /register:
+    post:
+      $ref: '../swagger/paths/auth/register.yaml'
+  /login:
+    post:
+      $ref: '../swagger/paths/auth/login.yaml'
+  /refresh:
+    post:
+      $ref: '../swagger/paths/auth/refresh.yaml'
+  /logout:
+    post:
+      $ref: '../swagger/paths/auth/logout.yaml'
+  /google-auth-url:
+    get:
+      $ref: '../swagger/paths/auth/google-auth-url.yaml'
+  /confirm-google:
+    post:
+      $ref: '../swagger/paths/auth/confirm-google.yaml'
+  /send-reset-email:
+    post:
+      $ref: '../swagger/paths/auth/send-reset-email.yaml'
+  /reset-pwd:
+    post:
+      $ref: '../swagger/paths/auth/reset-pwd.yaml'
 components:
   securitySchemes:
     bearerAuth:

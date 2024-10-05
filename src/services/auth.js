@@ -83,7 +83,6 @@ export const signinOrSignupWithGogle = async (code) => {
   const payload = loginTicket.getPayload();
 
   let user = await UserCollection.findOne({ email: payload.email });
-  console.log(user);
 
   if (!user) {
     const hashPassword = await bcrypt.hash(randomBytes(10), 10);
