@@ -1209,7 +1209,7 @@
                     },
                     "message": {
                       "type": "string",
-                      "example": "Successfully logged in an user!"
+                      "example": "Successfully login by Google OAuth"
                     },
                     "data": {
                       "type": "object",
@@ -1226,8 +1226,35 @@
               }
             }
           },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 400
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "invalid_grant"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "401": {
             "$ref": "#/components/responses/401"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
           }
         }
       }
