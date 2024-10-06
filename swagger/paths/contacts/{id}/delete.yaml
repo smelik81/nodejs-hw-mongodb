@@ -35,3 +35,5 @@ responses:
     $ref: '..\..\..\components\responses\404contacts.yaml'
   '401':
     $ref: '../../../components/responses/401.yaml'
+  '500':
+    $ref: '..\..\..\components\responses\500.yaml'

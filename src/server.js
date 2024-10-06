@@ -3,9 +3,12 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
 import { env } from './utils/env.js';
-import contactRouter from './routers/contacts.js';
+
 import notFoundHandler from './middlewares/notFoundHandler.js';
 import errorHandler from './middlewares/errorHandler.js';
+import swaggerDocs from './middlewares/swaggerDocs.js';
+
+import contactRouter from './routers/contacts.js';
 import authRouter from './routers/auth.js';
 import { UPLOAD_DIR } from './constans/index.js';
 /* import logger from './middlewares/logger.js'; */
@@ -21,6 +24,7 @@ const setupServer = () => {
    app.use(logger); */
   app.use('/contacts', contactRouter);
   app.use('/auth', authRouter);
+  app.use('/api-docs', swaggerDocs());
 
   app.use('*', notFoundHandler);
   app.use(errorHandler);

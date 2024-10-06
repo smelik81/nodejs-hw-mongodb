@@ -1,6 +1,5 @@
 tags:
   - Contacts
-
 summary: Create contact
 operationId: createContact
 description: 'Create a contact with payload'
@@ -26,11 +25,11 @@ requestBody:
           name:
             description: "Contact's name"
             type: string
-            example: 'Mike'
+            example: 'Sergio'
           phoneNumber:
             description: "Contact's phone number"
             type: string
-            example: '+38097699544'
+            example: '+380445556677'
           email:
             description: "Contact's email"
             type: string
@@ -79,5 +78,9 @@ responses:
             data:
               type: object
               $ref: '../../components/schemas/contact.yaml'
+  '400':
+    $ref: '../../components/responses/400.yaml'
   '401':
     $ref: '../../components/responses/401.yaml'
+  '500':
+    $ref: '..\..\components\responses\500.yaml'

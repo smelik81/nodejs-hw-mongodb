@@ -71,7 +71,7 @@ responses:
               description: HTTP status code indicating unauthorized access.
             message:
               type: string
-              example: 'Password invalid'
+              example: 'Email or password invalid'
               description: Unauthorized error message.
 
   '404':

@@ -14,7 +14,7 @@ content:
           description: HTTP status code indicating that the contact was not found.
         message:
           type: string
-          example: 'Contact not found'
+          example: 'Contact with contactId not found'
           description: Description of the error, specifying that the contact could not be found.
         data:
           type: object
@@ -23,5 +23,5 @@ content:
           properties:
             message:
               type: string
-              example: 'Contact not found'
+              example: 'Contact with contactId not found'
               description: A message providing more details about the error.
