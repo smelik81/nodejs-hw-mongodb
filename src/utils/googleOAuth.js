@@ -8,7 +8,9 @@ const clientId = env('GOOGLE_AUTH_CLIENT_ID');
 const clientSecret = env('GOOGLE_AUTH_CLIENT_SECRET');
 
 const readClientPath = path.resolve('google-oauth.json');
+
 const clientConfig = JSON.parse(await readFile(readClientPath, 'utf-8'));
+
 const redirectUri = clientConfig.web.redirect_uris[0];
 
 const generateOAuthClient = new OAuth2Client({
@@ -19,6 +21,7 @@ const generateOAuthClient = new OAuth2Client({
 
 export const validateCode = async (code) => {
   const response = await generateOAuthClient.getToken(code);
+
   if (!response.tokens.id_token) {
     throw createHttpError(401, 'Unautorization');
   }

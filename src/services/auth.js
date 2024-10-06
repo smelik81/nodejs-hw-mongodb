@@ -88,7 +88,7 @@ export const signinOrSignupWithGogle = async (code) => {
     const hashPassword = await bcrypt.hash(randomBytes(10), 10);
     user = await UserCollection.create({
       email: payload.email,
-      username: payload.name,
+      name: payload.name,
       password: hashPassword,
       verify: true,
     });
