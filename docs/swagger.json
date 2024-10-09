@@ -219,24 +219,16 @@
           }
         ],
         "requestBody": {
-          "description": "Contact details to be created.",
-          "required": true,
           "content": {
             "multipart/form-data": {
               "schema": {
                 "type": "object",
                 "required": [
-                  "_id",
                   "name",
                   "phoneNumber",
-                  "userId"
+                  "contactType"
                 ],
                 "properties": {
-                  "_id": {
-                    "description": "Contact's unique identifier",
-                    "type": "string",
-                    "example": "65e4decdd286b30065d54af9"
-                  },
                   "name": {
                     "description": "Contact's name",
                     "type": "string",
@@ -267,14 +259,10 @@
                     ],
                     "example": "personal"
                   },
-                  "userId": {
-                    "description": "Contact's user id",
-                    "type": "string",
-                    "example": "65e4decdd286b30065d54af9"
-                  },
                   "photo": {
                     "description": "Link to contact's photo",
                     "type": "string",
+                    "format": "binary",
                     "example": "https://res.cloudinary.com/dd6thsdhw/image/upload/image.png"
                   }
                 }
@@ -456,15 +444,11 @@
                     "example": "personal",
                     "description": "What type of contact does it belong to"
                   },
-                  "userId": {
-                    "type": "string",
-                    "example": "65e4decdd286b3004wrt678i",
-                    "description": "Contact's user id"
-                  },
                   "photo": {
                     "type": "string",
-                    "example": "https://res.cloudinary.com/uqwgdu/image/upload/image.png",
-                    "description": "Link to contact's photo"
+                    "description": "Link to contact's photo",
+                    "format": "binary",
+                    "example": "https://res.cloudinary.com/uqwgdu/image/upload/image.png"
                   }
                 }
               }
@@ -568,14 +552,10 @@
                     ],
                     "example": "personal"
                   },
-                  "userId": {
-                    "description": "Contact's user id",
-                    "type": "string",
-                    "example": "65e4decdd286b3004wrt678i"
-                  },
                   "photo": {
                     "description": "Link to contact's photo",
                     "type": "string",
+                    "format": "binary",
                     "example": "https://res.cloudinary.com/uqwgdu/image/upload/image.png"
                   }
                 }
@@ -700,7 +680,7 @@
           "description": "New user registartion details.",
           "required": true,
           "content": {
-            "application/json:": {
+            "application/json": {
               "schema": {
                 "type": "object",
                 "required": [
@@ -1424,7 +1404,8 @@
     "securitySchemes": {
       "bearerAuth": {
         "type": "http",
-        "scheme": "bearer"
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     },
     "schemas": {

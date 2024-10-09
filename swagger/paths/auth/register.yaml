@@ -10,7 +10,7 @@ requestBody:
   description: New user registartion details.
   required: true
   content:
-    application/json::
+    application/json:
       schema:
         type: object
         required:

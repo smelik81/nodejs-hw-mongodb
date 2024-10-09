@@ -47,14 +47,11 @@ requestBody:
             enum: [work, home, personal]
             example: personal
             description: 'What type of contact does it belong to'
-          userId:
-            type: string
-            example: '65e4decdd286b3004wrt678i'
-            description: "Contact's user id"
           photo:
             type: string
-            example: 'https://res.cloudinary.com/uqwgdu/image/upload/image.png'
             description: "Link to contact's photo"
+            format: binary
+            example: 'https://res.cloudinary.com/uqwgdu/image/upload/image.png'
 responses:
   '200':
     description: Successfully contact replaced
