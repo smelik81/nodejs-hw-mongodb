@@ -17,14 +17,6 @@ requestBody:
     multipart/form-data:
       schema:
         type: object
-        required:
-          - name
-          - phoneNumber
-          - email
-          - isFavourite
-          - contactType
-          - userId
-          - photo
         properties:
           name:
             type: string

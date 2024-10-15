@@ -29,28 +29,28 @@ paths:
       $ref: '../swagger/paths/contacts/{id}/patch.yaml'
     delete:
       $ref: '../swagger/paths/contacts/{id}/delete.yaml'
-  /register:
+  /auth/register:
     post:
       $ref: '../swagger/paths/auth/register.yaml'
-  /login:
+  /auth/login:
     post:
       $ref: '../swagger/paths/auth/login.yaml'
-  /refresh:
+  /auth/refresh:
     post:
       $ref: '../swagger/paths/auth/refresh.yaml'
-  /logout:
+  /auth/logout:
     post:
       $ref: '../swagger/paths/auth/logout.yaml'
-  /google-auth-url:
+  /auth/google-auth-url:
     get:
       $ref: '../swagger/paths/auth/google-auth-url.yaml'
-  /confirm-google:
+  /auth/confirm-google:
     post:
       $ref: '../swagger/paths/auth/confirm-google.yaml'
-  /send-reset-email:
+  /auth/send-reset-email:
     post:
       $ref: '../swagger/paths/auth/send-reset-email.yaml'
-  /reset-pwd:
+  /auth/reset-pwd:
     post:
       $ref: '../swagger/paths/auth/reset-pwd.yaml'
 components:
